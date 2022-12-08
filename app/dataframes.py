@@ -5,16 +5,17 @@ import pandas as pd
 #Read data from github
 
 #Archivos json
-url="https://raw.githubusercontent.com/mayteet/PI01_DATA05/main/Datasets/netflix_titles.json"
+url="https://raw.githubusercontent.com/mayteet/ProyectoIndividual/main/datasets/netflix_titles.json"
 f=requests.get(url)
 data=f.json()
+
 # Convertir el archivo de json en un DataFrame
 netflix=pd.DataFrame(data)
 
 #Archivos csv
-amazon= pd.read_csv("https://raw.githubusercontent.com/mayteet/PI01_DATA05/main/Datasets/amazon_prime_titles.csv")
-disney= pd.read_csv("https://raw.githubusercontent.com/mayteet/PI01_DATA05/main/Datasets/disney_plus_titles.csv")
-hulu= pd.read_csv("https://raw.githubusercontent.com/mayteet/PI01_DATA05/main/Datasets/hulu_titles.csv") 
+amazon= pd.read_csv("https://raw.githubusercontent.com/mayteet/ProyectoIndividual/main/datasets/amazon_prime_titles.csv")
+disney= pd.read_csv("https://raw.githubusercontent.com/mayteet/ProyectoIndividual/main/datasets/disney_plus_titles.csv")
+hulu= pd.read_csv("https://raw.githubusercontent.com/mayteet/ProyectoIndividual/main/datasets/hulu_titles.csv") 
 
 #Agregamos la columna de plataform y unimos las tablas
 netflix["plataform"]= "netflix"
@@ -57,3 +58,5 @@ data_all["duration_2"]=data_all["duration_2"].str.replace(" Season","")
 
 #Juntamos todo en la tabla principal
 df_final= pd.merge(df,data_all, on=["show_id","plataform"],how="left")
+
+df_final= df_final.drop_duplicates(subset=["title","type"])
