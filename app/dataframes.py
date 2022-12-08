@@ -1,13 +1,6 @@
 #Import
-from github import Github
-from pprint import pprint
 import requests
 import pandas as pd
-import time
-from urllib.request import urlopen
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 
 #Read data from github
 
