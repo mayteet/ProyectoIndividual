@@ -21,7 +21,8 @@ async def get_max_duration(anio:int, plataforma:str, um:str):
 @app.get("/get_count_platform/{plataforma}")
 async def get_count_platform(plataforma:str):
     df_consul_2= df_final[["plataform","title"]]
-    df_consul_2=df_consul_2.groupby([plataforma]).count()
+    df_consul_2=df_consul_2[df_consul_2["plataform"]==plataforma]
+    df_consul_2=df_consul_2["plataform"].count()
     return df_consul_2
     
 @app.get("/get_listedin/{genero}")
@@ -31,7 +32,7 @@ async def get_listedin(genero:str):
     return df_consul_3
     
 @app.get("/get_actor/{actor}{anio}")
-async def get_actor(actor:str, anio:int):
+async def get_actor(actor:str, anio:float):
     df_consul_4=df_final[["plataform","cast","year_added"]]
     df_consul_4= df_consul_4.dropna(axis=0, how="all", subset=["cast"])
     df_consul_4=df_consul_4[df_consul_4["cast"].str.contains(actor, regex=False)]

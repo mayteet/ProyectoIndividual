@@ -2,13 +2,13 @@
 import requests
 import pandas as pd
 
+
 #Read data from github
 
 #Archivos json
 url="https://raw.githubusercontent.com/mayteet/ProyectoIndividual/main/datasets/netflix_titles.json"
 f=requests.get(url)
 data=f.json()
-
 # Convertir el archivo de json en un DataFrame
 netflix=pd.DataFrame(data)
 
@@ -51,6 +51,8 @@ data_all
 #Limpieza de datos
 data_all.rename(columns={'duration':"duration_2"}, inplace=True)
 
+
+
 #Juntamos todo en la tabla principal
 df_final= pd.merge(df,data_all, on=["show_id","plataform"],how="left")
 
@@ -63,8 +65,9 @@ df_final[["day","month","year_added"]]=df_final.date_added.str.split(expand =Tru
 #Separamos la columna de duration por su valor y su unidad de medida
 df_final[["duration_3","um"]]=df_final.duration.str.split(expand =True)
 
-#Convertimos la columna de duration a integer
+#Convertimos las columnas numéricas en tados numericos
 df_final["duration_3"]=pd.to_numeric(df_final["duration_3"], downcast="integer")
+df_final["year_added"]=pd.to_numeric(df_final["year_added"], downcast="integer")
 
 #Nos aseguramos que la columna um tenga los datos limpios
 df_final["um"]=df_final["um"].str.replace("Seasons","Season")
@@ -72,4 +75,5 @@ df_final["um"]=df_final["um"].str.replace("Seasons","Season")
 
 #Quitamos los duplicados de la tabla
 df_final=df_final.drop_duplicates(["title","type","plataform"])
+
 
