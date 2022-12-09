@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from dataframes import df_final
 from starlette.responses import RedirectResponse
 
-app= FastAPI(title="API de Luz",
-             description="Estamos en una prueba de una API",
+app= FastAPI(title="Proyecto Individual 1 - Henry",
+             description="Luz Mayte Estrada Torvisco",
              version="1.0.1")
 
 
