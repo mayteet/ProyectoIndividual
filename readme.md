@@ -28,7 +28,6 @@ La idea de este proyecto es que pueda elaborar y ejecutar una API.
 <img src = 'Imagenes\metodologia.png' height=250><p>
 
 
-## **Principales resultados**
-https://proyecto-indiv-prod-proyecto-1-hfriby.mo6.mogenius.io/docs
-
+## **Video explicativo**
+https://www.youtube.com/watch?v=8c-mZiyJKP0&t=41s
 
